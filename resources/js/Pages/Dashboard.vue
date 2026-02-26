@@ -1,6 +1,7 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head } from '@inertiajs/vue3';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
+import { Head, router } from '@inertiajs/vue3';
 </script>
 
 <template>
@@ -22,6 +23,15 @@ import { Head } from '@inertiajs/vue3';
                 >
                     <div class="p-6 text-gray-900">
                         You're logged in!
+
+                        <div class="mt-4">
+                            <PrimaryButton
+                                type="button"
+                                @click="router.visit(route('reviews.index'))"
+                            >
+                                Отзывы
+                            </PrimaryButton>
+                        </div>
                     </div>
                 </div>
             </div>
