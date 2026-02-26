@@ -6,6 +6,11 @@ import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link } from '@inertiajs/vue3';
+import { computed } from 'vue';
+import { usePage } from '@inertiajs/vue3';
+
+const page = usePage();
+const user = computed(() => page.props.auth?.user || null);
 
 const showingNavigationDropdown = ref(false);
 </script>
@@ -52,7 +57,7 @@ const showingNavigationDropdown = ref(false);
                                                 type="button"
                                                 class="inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none"
                                             >
-                                                <span v-if="$page.props.auth.user">{{ $page.props.auth.user.name }}</span>
+                                                <span v-if="user">{{ user.name }}</span>
 
                                                 <svg
                                                     class="-me-0.5 ms-2 h-4 w-4"
@@ -156,10 +161,10 @@ const showingNavigationDropdown = ref(false);
                             <div
                                 class="text-base font-medium text-gray-800"
                             >
-                                <span v-if="$page.props.auth.user">{{ $page.props.auth.user.name }}</span>
+                                <span v-if="user">{{ user.name }}</span>
                             </div>
                             <div class="text-sm font-medium text-gray-500">
-                                <span v-if="$page.props.auth.user">{{ $page.props.auth.user.email }}</span>
+                                <span v-if="user">{{ user.email }}</span>
                             </div>
                         </div>
 
